@@ -38,6 +38,7 @@
                  
         * Url: /api/check  (GET method)  
         The check() method return data by entity Id (does not compare all element)
+        
            example: 
            
           
