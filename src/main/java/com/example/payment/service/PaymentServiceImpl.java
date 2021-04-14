@@ -39,11 +39,10 @@ public class PaymentServiceImpl implements PaymentService {
     public XMLResponse check(PaymentDto paymentDto) throws PaymentNotFoundException {
         Payment payment = paymentRepository.findById(paymentDto.getId())
                 .orElseThrow(() -> new PaymentNotFoundException("payment not found"));
-        XMLResponse xmlResponse = new XMLResponse();
+        XMLResponse xmlResponse = this.modelMapper.map(payment, XMLResponse.class);
         xmlResponse.setDate(payment.getDate().toString());
-        xmlResponse.setMessage("EXISTS");
-        xmlResponse.setId(payment.getId());
         xmlResponse.setStatus(0);
+        xmlResponse.setMessage("EXISTS");
         return xmlResponse;
     }
 }
